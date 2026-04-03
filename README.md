@@ -28,7 +28,7 @@
 ### Backend
 
 - **Node.js + Express** - Сервер приложения
-- **PostgreSQL** - База данных
+- **SQLite** - База данных
 - **Prisma ORM** - Работа с БД
 - **JWT** - Аутентификация
 - **bcrypt** - Хеширование паролей
@@ -38,7 +38,6 @@
 ### Требования
 
 - Node.js 16+
-- PostgreSQL 12+
 - npm или yarn
 
 ### Установка
@@ -59,21 +58,13 @@ cd server
 
 npm install
 
-# Создание переменных окружения
+# Запуск миграций Prisma
 
-cp .env.example .env
-
-# Отредактируйте .env с вашими данными БД
-
-# DATABASE_URL=postgresql://user:password@localhost:5432/travel_routes_db
-
-# Запуск миграций
-
-npm run prisma:migrate
+npx prisma migrate dev
 
 # Заполнение БД начальными данными
 
-npm run prisma:seed
+npx prisma db seed
 
 # Запуск сервера
 
@@ -406,5 +397,6 @@ npm run prisma:seed
 
 **Версия:** 1.0.0  
 **Последнее обновление:** 30 марта 2024 г.
-#   T r a v e l R o u t e s  
+#   T r a v e l R o u t e s 
+ 
  
