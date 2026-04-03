@@ -1,0 +1,51 @@
+/* client/src/styles/StarRating.css */
+.star-rating-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stars {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.star {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  position: relative;
+}
+
+.star.filled {
+  color: #ffd700;
+}
+
+.star.partial::before {
+  content: "★";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--partial-width, 0%);
+  overflow: hidden;
+  color: #ffd700;
+}
+
+.star:hover {
+  color: #ffd700;
+}
+
+.rating-input {
+  width: 60px;
+  padding: 0.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.rating-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+}

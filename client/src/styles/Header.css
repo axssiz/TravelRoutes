@@ -1,0 +1,316 @@
+/* client/src/styles/Header.css */
+.header {
+  background: var(--bg-white);
+  box-shadow: var(--shadow-md);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 3px solid var(--primary-color);
+  animation: slideIn 0.5s ease;
+}
+
+.header-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo-icon {
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  flex: 1;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.nav-link:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--primary-color),
+    var(--secondary-color)
+  );
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-icon {
+  font-size: 1.2rem;
+  display: inline-block;
+}
+
+.auth-menu {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.profile-link {
+  padding: 0.6rem 1.2rem;
+  background: var(--bg-light);
+  border-radius: 50px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+}
+
+.profile-link:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.favorites-link {
+  color: var(--danger-color);
+}
+
+.favorites-link:hover {
+  background: var(--danger-color);
+  color: white;
+}
+
+.heart {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.favorites-link:hover .heart {
+  animation: bounce 0.6s ease;
+}
+
+.register-btn {
+  background: var(--primary-gradient);
+  color: white;
+  padding: 0.75rem 1.75rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: inline-block;
+  border: 2px solid transparent;
+  box-shadow: var(--shadow-md);
+}
+
+.register-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.logout-btn {
+  background: var(--danger-color);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 16px rgba(220, 38, 38, 0.3);
+}
+
+.admin-link {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.admin-link:hover {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+}
+
+/* Иконки */
+.logo-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.4rem;
+  margin-right: 0.5rem;
+}
+
+.nav-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.heart {
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-right: 0.25rem;
+}
+
+.nav-link svg,
+.admin-link svg,
+.employee-link svg,
+.favorites-link svg {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  display: inline-flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .header-container {
+    padding: 1rem;
+    position: relative;
+  }
+
+  .logo {
+    font-size: 1.3rem;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-white);
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-radius: 0 0 12px 12px;
+    z-index: 99;
+  }
+
+  .nav-menu.mobile-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .nav-menu .nav-link {
+    padding: 1rem 2rem;
+    border-radius: 0;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  .nav-menu .nav-link:hover {
+    background: var(--bg-light);
+  }
+
+  .auth-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--bg-white);
+    box-shadow: var(--shadow-lg);
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    border-radius: 0 0 12px 12px;
+    z-index: 99;
+  }
+
+  .auth-menu.mobile-menu-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .auth-menu .nav-link,
+  .auth-menu .profile-link,
+  .auth-menu .logout-btn,
+  .auth-menu .register-btn {
+    padding: 1rem 2rem;
+    border-radius: 0;
+    justify-content: flex-start;
+    width: 100%;
+    font-size: 1rem;
+    margin: 0;
+  }
+
+  .auth-menu .register-btn {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .mobile-menu-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+    margin-left: auto;
+  }
+
+  /* Hide original nav and auth menus on mobile */
+  .nav-menu:not(.mobile-menu-open),
+  .auth-menu:not(.mobile-menu-open) {
+    display: none;
+  }
+}

@@ -1,0 +1,83 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./prisma/dev.db"
+}
+
+// Модель пользователя
+model User {
+  id        Int       @id @default(autoincrement())
+  name      String
+  email     String    @unique
+  phone     String    @unique
+  password  String
+  role      String    @default("USER") // USER, EMPLOYEE, ADMIN
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  // Связи
+  routes    Route[]
+  favorites Favorite[]
+  
+  @@map("users")
+}
+
+// Модель отеля
+model Hotel {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  price       Float
+  rating      Float     @default(0)
+  city        String
+  imageUrl    String
+  latitude    Float     @default(0)
+  longitude   Float     @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  // Связи
+  favorites   Favorite[]
+
+  @@map("hotels")
+}
+
+// Модель маршрута
+model Route {
+  id              Int       @id @default(autoincrement())
+  startLocation   String
+  endLocation     String
+  distance        Float     // в км
+  duration        Int       // в минутах
+  transportType   String    @default("car") // car, walking, transit
+  userId          Int
+  user            User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  // Связи
+  favorites       Favorite[]
+
+  @@map("routes")
+}
+
+// Модель избранного
+model Favorite {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  hotelId   Int?
+  hotel     Hotel?    @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  routeId   Int?
+  route     Route?    @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+
+  @@unique([userId, hotelId, routeId])
+  @@map("favorites")
+}

@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Тест загрузки изображений</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 20px;
+      }
+      .test {
+        margin: 20px 0;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-top: 10px;
+        border-radius: 8px;
+      }
+      .status {
+        margin-top: 10px;
+        padding: 10px;
+        border-radius: 4px;
+      }
+      .success {
+        background: #d4edda;
+        color: #155724;
+      }
+      .error {
+        background: #f8d7da;
+        color: #721c24;
+      }
+      .loading {
+        background: #fff3cd;
+        color: #856404;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>🖼️ Диагностика загрузки изображений</h1>
+
+    <div class="test">
+      <h2>API Запрос</h2>
+      <button onclick="testAPI()">Получить рубежи от API</button>
+      <div id="api-result"></div>
+    </div>
+
+    <div class="test">
+      <h2>Прямой тест Unsplash URL</h2>
+      <p>Тестирование URL-адреса напрямую:</p>
+      <div id="direct-test"></div>
+    </div>
+
+    <script>
+      async function testAPI() {
+        const resultDiv = document.getElementById("api-result");
+        resultDiv.innerHTML = '<div class="status loading">Загрузка...</div>';
+
+        try {
+          const response = await fetch("http://localhost:5000/api/hotels");
+          const data = await response.json();
+
+          if (data.success && data.data.hotels.length > 0) {
+            const hotel = data.data.hotels[0];
+            let html = `
+                        <h3>${hotel.name}</h3>
+                        <p>Image URL: <code>${hotel.imageUrl}</code></p>
+                        <p>Попытка загрузить изображение:</p>
+                        <img src="${hotel.imageUrl}" 
+                             alt="${hotel.name}"
+                             onload="console.log('✅ Image loaded'); this.parentElement.innerHTML += '<div class=\"status success\">✅ Изображение успешно загружено!</div>'"
+                             onerror="console.log('❌ Image failed'); this.parentElement.innerHTML += '<div class=\"status error\">❌ Ошибка загрузки изображения. Проверьте консоль (F12).</div>'">
+                        <div class="status loading">Загрузка изображения...</div>
+                    `;
+            resultDiv.innerHTML = html;
+          } else {
+            resultDiv.innerHTML =
+              '<div class="status error">❌ Ошибка: отели не найдены</div>';
+          }
+        } catch (error) {
+          resultDiv.innerHTML = `<div class="status error">❌ Ошибка: ${error.message}</div>`;
+          console.error(error);
+        }
+      }
+
+      // Автоматически выполнить тест при загрузке
+      window.addEventListener("load", () => {
+        testAPI();
+
+        // Тест прямого URL
+        const directTestDiv = document.getElementById("direct-test");
+        const testUrl =
+          "https://images.unsplash.com/photo-1631049307264-da0ec9d70304?ixlib=rb-4.0.3&w=400&h=300&fit=crop";
+        directTestDiv.innerHTML = `
+                <p>URL: <code>${testUrl}</code></p>
+                <img src="${testUrl}" 
+                     alt="test"
+                     style="max-width: 300px;"
+                     onload="this.parentElement.innerHTML += '<div class=\"status success\">✅ Unsplash работает!</div>'"
+                     onerror="this.parentElement.innerHTML += '<div class=\"status error\">❌ Unsplash заблокирован или недоступен. Проверьте консоль (F12).</div>'">
+                <div class="status loading">Загрузка Unsplash...</div>
+            `;
+      });
+    </script>
+  </body>
+</html>

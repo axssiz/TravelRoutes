@@ -1,0 +1,23 @@
+.DS_Store
+.idea
+.vscode
+node_modules
+dist
+build
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Python
+__pycache__
+*.pyc
+
+# OS
+Thumbs.db

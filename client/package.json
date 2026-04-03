@@ -1,0 +1,48 @@
+{
+  "name": "travel-routes-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "proxy": "http://localhost:8080",
+  "dependencies": {
+    "@react-google-maps/api": "^2.20.8",
+    "axios": "^1.6.0",
+    "leaflet": "^1.9.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.6.0",
+    "react-router-dom": "^6.18.0",
+    "react-scripts": "^5.0.1"
+  },
+  "scripts": {
+    "dev": "react-scripts start",
+    "build": "react-scripts build",
+    "start": "react-scripts start",
+    "eject": "react-scripts eject",
+    "optimize-images": "node optimize-images.cjs"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "imagemin": "^9.0.1",
+    "imagemin-mozjpeg": "^10.0.0",
+    "imagemin-pngquant": "^10.0.0",
+    "imagemin-webp": "^8.0.0",
+    "sharp": "^0.34.5"
+  }
+}

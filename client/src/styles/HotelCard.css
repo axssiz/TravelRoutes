@@ -1,0 +1,205 @@
+/* client/src/styles/HotelCard.css */
+.hotel-card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.hotel-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  animation: slideIn 0.5s ease forwards;
+}
+
+.hotel-card:hover {
+  transform: translateY(-12px);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.hotel-image-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 220px;
+  background: linear-gradient(135deg, #e0e7ff, #f3e8ff);
+}
+
+.hotel-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: block;
+}
+
+.hotel-image-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e0e7ff 0%, #f3e8ff 100%);
+  color: var(--text-secondary);
+}
+
+.placeholder-icon {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.hotel-image-placeholder p {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.hotel-card:hover .hotel-image {
+  transform: scale(1.15) rotate(1deg);
+}
+
+.hotel-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--primary-gradient);
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  animation: slideInLeft 0.5s ease 0.2s both;
+}
+
+.favorite-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: var(--shadow-md);
+}
+
+.favorite-btn:hover {
+  transform: scale(1.15);
+  box-shadow: var(--shadow-lg);
+}
+
+.favorite-btn.active {
+  background: var(--danger-color);
+  box-shadow: 0 8px 16px rgba(239, 68, 68, 0.3);
+}
+
+.favorite-btn.active .heart-icon {
+  animation: bounce 0.6s ease;
+  color: white;
+}
+
+.heart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 1.3rem;
+  color: var(--text-secondary);
+}
+
+.heart-icon svg {
+  font-size: 1.3rem;
+}
+
+.favorite-btn.active .heart-icon {
+  animation: bounce 0.6s ease;
+}
+
+.hotel-info {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.hotel-name {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.hotel-description {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  flex: 1;
+  line-height: 1.5;
+}
+
+.hotel-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border-light);
+  gap: 1rem;
+}
+
+.rating {
+  font-weight: 600;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.star {
+  color: #f59e0b;
+  font-size: 1.1rem;
+}
+
+.price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (max-width: 768px) {
+  .hotel-card {
+    border-radius: 12px;
+  }
+
+  .hotel-image-wrapper {
+    height: 180px;
+  }
+
+  .hotel-info {
+    padding: 1rem;
+  }
+
+  .hotel-name {
+    font-size: 1.1rem;
+  }
+
+  .price {
+    font-size: 1.1rem;
+  }
+}
